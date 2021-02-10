@@ -1,0 +1,31 @@
+{% extends 'menu.html.twig' %}
+
+{% block principal %}
+    <script>
+        $( function() {
+            $("#datepicker").datepicker({
+                dateFormat: 'dd/mm/yy',
+                onSelect: function() {  
+                    $("#texto_fecha").val($(this).datepicker().val());
+                }
+            });
+        });
+    </script>
+    <div class="cont-mostres">
+        <div class="contform">
+            <form method="post" action="{{ path('cargar_tabla')}}">
+                <input type="text" id="texto_fecha" name="fecha" class="txtform">
+                <input type="submit" value="ACEPTAR" id="enviar_fecha" class="btnform">
+            </form>
+        </div>
+        <br>
+        <div class="contdate">
+            <div id="datepicker" class="datepicker"></div>
+        </div>
+    </div>
+    
+    {% block tabla %}{% endblock %}
+{% endblock %}
+
+
+

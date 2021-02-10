@@ -1,0 +1,42 @@
+{% extends 'reserva/mostrar_reservas.html.twig' %}
+{% block tabla %}
+
+    <table class="tabla-res">
+        <tr class="tbl-pistascab">
+            <th></th>
+            <th class="tbl-pista">Pista 1</th>
+            <th class="tbl-pista">Pista 2</th> 
+            <th class="tbl-pista">Pista 3</th>
+            <th class="tbl-pista">Pista 4</th>
+        </tr>
+        {% for hora in horas %}
+            <tr class="tbl-horascab">
+                <td class="tbl-hora">{{ hora.hora }}:00</td>
+                {% for pista in pistas %}
+                    {% set reservado = false %}
+                    {% for reserva in reservas %}
+                        {% if reserva.hora.hora == hora.hora and reserva.pista.getNumPista == pista.getNumPista %}
+                            {% set reservado = true %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if reservado %}
+                        <td>
+                            <div class="si-ocup">
+                                <p class="btn-ocup">OCUPADO</p>
+                            </div>
+                        </td>
+                    {% else%}
+                        <td>
+                           <div class="si-res">
+                                <input type="button" class="btn-res" data-fecha="{{fecha}}" data-hora="{{hora.hora}}" data-pista="{{pista.getNumPista}}" value="RESERVAR"/>
+                            </div>
+                        </td>    
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="div-conf">
+        <input id="bt_confirmar" type="button" class="btn-conf" value="CONFIRMAR"/>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <div class="container-login">
+        <div class="login-box">
+            {% for mensaje in app.flashes('mensaje') %}
+                <div class="flash-notice">
+                    {{ mensaje }}
+                </div>
+            {% endfor %}
+            {{ form(formulario_registro) }}
+        </div>
+    </div>
+    
+{% endblock %}

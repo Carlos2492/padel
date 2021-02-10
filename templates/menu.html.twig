@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Principal{% endblock %}
+{% block body %}
+    <div class="base_menu">
+        <div class="menu">
+            <div class="div-user">
+                <p class="email-user">Hola {{usuario.nombre}} {{usuario.apellidos}}</p>
+            </div>
+
+            <div class="div-img">
+                <img src="{{asset("imagenes/" ~ usuario.foto)}}" class="img-user" >
+            </div>
+
+            <a class="b_reservas" href="{{ path('reserva_datepicker') }}">
+                <button class="btn2">Reservas</button></a>
+            <a class="b_ver_reservas" href="{{ path('reservas_user') }}">
+                <button class="btn2">Ver mis reservas</button></a>
+            <a class="b_ver_reservas" href="{{ path('usuario_edit') }}">
+                <button class="btn2">Editar datos</button></a>
+            <a class="b_logout" href="{{ path('app_logout') }}">
+                <button class="btn2">LogOut</button></a>
+            {% if usuario.roles[0] == 'ROLE_ADMIN' %}
+                <a class="b_admin" href="{{ path('admin_reservas') }}">
+                    <button class="btn2">Administración</button></a>
+            {%endif %}}
+        </div>   
+        <div class="main_container">
+            {% for mensaje in app.flashes('mensaje') %}
+                <div class="flash-notice">
+                    {{ mensaje }}
+                </div>
+            {% endfor %}
+            {% block principal %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+

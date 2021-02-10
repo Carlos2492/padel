@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pista index{% endblock %}
+
+{% block body %}
+    <h1>Pista index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Num_pista</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pistum in pistas %}
+            <tr>
+                <td>{{ pistum.id }}</td>
+                <td>{{ pistum.numPista }}</td>
+                <td>
+                    <a href="{{ path('pista_show', {'id': pistum.id}) }}">show</a>
+                    <a href="{{ path('pista_edit', {'id': pistum.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('pista_new') }}">Create new</a>
+{% endblock %}

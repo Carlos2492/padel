@@ -1,0 +1,76 @@
+<div class="imgtitulo"><input type="checkbox" class="cb">
+    <h1 class="titulo">RESERVAS PADEL</h1>
+    <input type="checkbox" class="cb">
+</div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .imgtitulo{
+                width: 100vw;
+                background-color: black;
+                align-items: center;
+
+            }
+            .titulo{
+                color: white;
+                padding-left: 25%;
+                align-content: center;
+            }
+
+table.customTable {
+  width: 100%;
+  background-color: #999999;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #FFFFFF;
+  border-style: solid;
+  color: #000000;
+}
+
+table.customTable td, table.customTable th {
+  border-width: 2px;
+  border-color: #FFFFFF;
+  border-style: solid;
+  padding: 5px;
+}
+
+table.customTable thead {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+            
+        </style>
+    </head>
+    <body>
+        <br><br>
+        <table border="1" class="customTable">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Pista</th>
+                    <th>Hora</th>
+                    <th>Fecha</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                    <tr>
+                        <td>{{ reserva.usuario.getNombre()}}</td>
+                        <td>{{ reserva.pista.getNumPista()}}</td>
+                        <td>{{ reserva.hora.hora }}:00</td>
+                        <td>{{ reserva.fecha ? reserva.fecha|date('Y-m-d') : '' }}</td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+    </body>
+
+</html>

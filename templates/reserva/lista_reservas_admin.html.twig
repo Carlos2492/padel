@@ -1,0 +1,36 @@
+{% extends 'reserva/admin_reservas.html.twig' %}
+
+{% block title %}Reserva index{% endblock %}
+
+{% block listado %}
+    <div class="listado-res">
+        <h1 class="tit-list">Reservas actuales:</h1>
+        <br>
+        <table class="table">
+            <thead>
+                <tr class="tbl-cabtbl">
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Pista</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                    <tr class="tbl-linstbl">
+                        <td class="tbl-lintbl">{{ reserva.usuario.getNombre()}}</td>
+                        <td class="tbl-lintbl">{{ reserva.fecha ? reserva.fecha|date('Y-m-d') : '' }}</td>
+                        <td class="tbl-lintbl">{{ reserva.hora.hora }}:00</td>
+                        <td class="tbl-lintbl">{{ reserva.pista.getNumPista()}}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="3"></td>
+                        <h3 class="tbl-sinres">No hay reservas.</h3>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+                <a href="{{ path('pdf_generar') }}"><button class="btnform">Generar PDF</button></a>
+    </div>
+{% endblock %}

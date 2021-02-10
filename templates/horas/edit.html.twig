@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Horas{% endblock %}
+
+{% block body %}
+    <h1>Edit Horas</h1>
+
+    {{ include('horas/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('horas_index') }}">back to list</a>
+
+    {{ include('horas/_delete_form.html.twig') }}
+{% endblock %}

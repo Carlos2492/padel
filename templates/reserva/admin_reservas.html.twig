@@ -1,0 +1,27 @@
+{% extends 'menu.html.twig' %}
+
+{% block principal %}
+    <script>
+        $( function() {
+            $("#datepicker2").datepicker({
+                dateFormat: 'dd/mm/yy',
+                onSelect: function() {  
+                    $("#texto_fecha2").val($(this).datepicker().val());
+                    
+                }
+            });
+        });
+    </script>
+     <div class="cont-mostres">
+        <div class="contform">
+            <form method="post" action="{{ path('cargar_reservas')}}">
+                <input type="text" id="texto_fecha2" name="fecha" class="txtform">
+                <input type="submit" value="ACEPTAR" id="enviar_fecha" class="btnform">
+            </form>
+        </div>
+        <div class="contdate">
+            <div id="datepicker2" class="datepicker"></div>
+        </div>        
+     </div>
+    {% block listado %}{% endblock %}
+{% endblock %}

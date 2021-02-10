@@ -1,0 +1,44 @@
+{% extends 'menu.html.twig' %}
+
+{% block title %}Reserva index{% endblock %}
+
+{% block principal %}
+    <div class="list-usu">
+        <h1 class="tit-list">Reservas actuales:</h1>
+        <p>
+            {% for mensaje in app.flashes('mensaje') %}
+                <div class="flash-notice">
+                    {{ mensaje }}
+                </div>
+            {% endfor %}
+        </p>
+        <table class="table">
+            <thead>
+                <tr class="tbl-cabtbl">
+                    <th>Fecha</th>
+                    <th>Pista</th>
+                    <th>Hora</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for reserva in reservas %}
+                <tr class="tbl-linstbl">
+                    <td class="tbl-lintbl">{{ reserva.fecha ? reserva.fecha|date('Y-m-d') : '' }}</td>
+                    <td class="tbl-lintbl">{{ reserva.pista.getNumPista()}}</td>
+                    <td class="tbl-lintbl">{{ reserva.hora.hora }}:00</td>
+                    <td
+                        > {{ include('reserva/_delete_form.html.twig') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <h3 class="tbl-sinres">Usted no ha realizado ninguna reserva.</h3>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>     
+    </div>
+{% endblock %}

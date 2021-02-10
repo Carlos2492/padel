@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Pista{% endblock %}
+
+{% block body %}
+    <h1>Edit Pista</h1>
+
+    {{ include('pista/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('pista_index') }}">back to list</a>
+
+    {{ include('pista/_delete_form.html.twig') }}
+{% endblock %}
